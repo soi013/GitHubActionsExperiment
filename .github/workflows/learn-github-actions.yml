@@ -9,11 +9,16 @@ jobs:
         shell: bash
         run: |
           expr 1 + 1 > output.log
+
       - name: upload output file
         uses: actions/upload-artifact@v1
         with:
           name: output-log-file
           path: output.log
+
+      - uses: actions/download-artifact@v2
+        with:
+          name: output-log-file
 
       # - name: Run build script
       #   run: ./.github/scripts/build.sh
