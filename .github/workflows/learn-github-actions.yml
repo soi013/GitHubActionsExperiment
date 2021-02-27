@@ -6,7 +6,7 @@ jobs:
     # name: save output
     steps:
       - name: Save output
-      - shell: bash
+        shell: bash
         run: |
           expr 1 + 1 > output.log
       - name: upload output file
