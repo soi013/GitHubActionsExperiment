@@ -8,6 +8,7 @@ jobs:
       - name: Save output
         shell: bash
         run: |
+          sleep 10
           expr 1 + 1 > output.log
 
       - name: upload output file
