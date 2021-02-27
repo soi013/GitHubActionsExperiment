@@ -1,15 +1,6 @@
 name: learn-github-actions
 on: [push]
-jobs:
-  example-job:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Connect to PostageSQL
-        run: node client.js
-        env:
-          POSTGRES_HOST: postgres
-          POSTGRES_PORT: 5432
-          
+jobs:          
   check-bats-version:    
     runs-on: ubuntu-latest
     steps:
@@ -38,3 +29,12 @@ jobs:
           token: # optional, default is ${{ github.token }}
           # Deprecated. Use node-version instead. Will not be supported after October 1, 2019
           version: # optional
+
+  example-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Connect to PostageSQL
+        run: node client.js
+        env:
+          POSTGRES_HOST: postgres
+          POSTGRES_PORT: 5432
