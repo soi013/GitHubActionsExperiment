@@ -2,6 +2,7 @@ name: learn-github-actions
 on: [push]
 jobs:
   example-job:
+    runs-on: ubuntu-latest
     steps:
       - name: Connect to PostageSQL
         run: node client.js
