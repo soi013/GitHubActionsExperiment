@@ -3,7 +3,7 @@ on: [push]
 jobs:   
   example-job:
     runs-on: ubuntu-latest
-    name: save output
+    # name: save output
     steps:
       - name: Save output
       - shell: bash
