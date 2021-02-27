@@ -1,6 +1,14 @@
 name: learn-github-actions
 on: [push]
 jobs:
+  example-job:
+    steps:
+      - name: Connect to PostageSQL
+        run: node client.js
+        env:
+          POSTGRES_HOST: postgres
+          POSTGRES_PORT: 5432
+          
   check-bats-version:    
     runs-on: ubuntu-latest
     steps:
