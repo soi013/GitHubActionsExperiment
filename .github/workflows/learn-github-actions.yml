@@ -5,7 +5,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: echos
-        shell: bash
+        shell: pwsh
         run: |
           echo $RELEASE_VERSION
           echo repo_${{ github.repository }}
