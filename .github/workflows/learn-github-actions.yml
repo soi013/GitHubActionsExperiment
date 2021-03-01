@@ -1,20 +1,20 @@
 name: learn-github-actions
 on: [push]
 jobs:
-  setup:
+  echos:
     runs-on: ubuntu-latest
     steps:
-      - run: ./setup_server.sh
-
-  build_job:
-    needs: setup
-    runs-on: ubuntu-latest
-    steps:
-      - run: ./build_server.sh
-        
-  test_job:
-    needs: build_job
-    runs-on: ubuntu-latest
-    steps:
-      - run: ./test_server.sh
+      - name: echos
+        shell: bash
+        run: |
+          echo $RELEASE_VERSION
+          echo repo_${{ github.repository }}
+          echo ref_${{ github.ref }}
+          echo href_${{ github.head_ref }}
+          echo sha_${{ github.sha }}
+          echo workspace_${{ github.workspace }}
+          echo tag_${GITHUB_REF#refs/*/}
+          echo REF1_$GITHUB_REF
+          echo REF2_${ GITHUB_REF }
+          echo REF3_${GITHUB_REF##*/}
 
