@@ -17,31 +17,31 @@ jobs:
           echo REF1=$GITHUB_REF
           echo REF3=${GITHUB_REF##*/}
           echo REF4=${GITHUB_REF/refs\/tags\/v/}
-          echo ${{ github.repository }} | sed -e "s#.*/##" >> $REPOSITORY
-          echo ${{ github.ref }} | sed -e "s#refs/tags/##g" >> $VERSION
-          echo REPOSITORY=$REPOSITORY
-          echo VERSION=$VERSION
+          echo ${{ github.repository }} | sed -e "s#.*/##" >> $REPO
+          echo ${{ github.ref }} | sed -e "s#refs/tags/##g" >> $VER
+          echo REPOSITORY=$REPO
+          echo VERSION=$VER
 
       - name: echos2
         shell: bash
         run: |
           echo $RELEASE_VERSION
-          echo REPOSITORY=$REPOSITORY
-          echo VERSION=$VERSION
+          echo REPOSITORY=$REPO
+          echo VERSION=$VER
 
       - name: Save output
         shell: bash
         run: |
-          expr 1 + 1 > output_$VERSION_.log
+          expr 1 + 1 > output_$VER.log
       
       - uses: actions/upload-artifact@v1
         with:
-          name: output_$VERSION_-log-file
-          path: output_$VERSION_.log
+          name: output_$VER-log-file
+          path: output_$VER.log
       
       - uses: actions/download-artifact@v2
         with:
-          name: output_$VERSION_-log-file
+          name: output_$VER-log-file
 
       - name: Create release
         id: create_release
