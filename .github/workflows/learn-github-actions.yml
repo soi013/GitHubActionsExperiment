@@ -8,14 +8,14 @@ jobs:
         shell: pwsh
         run: |
           echo $RELEASE_VERSION
-          echo repo_${{ github.repository }}
-          echo ref_${{ github.ref }}
-          echo href_${{ github.head_ref }}
-          echo sha_${{ github.sha }}
-          echo workspace_${{ github.workspace }}
-          echo tag_${GITHUB_REF#refs/*/}
-          echo REF1_$GITHUB_REF
-          echo REF3_${GITHUB_REF##*/}
+          echo repo: ${{ github.repository }}
+          echo ref : ${{ github.ref }}
+          echo href: ${{ github.head_ref }}
+          echo sha : ${{ github.sha }}
+          echo workspace: ${{ github.workspace }}
+          echo tag : ${GITHUB_REF#refs/*/}
+          echo REF1: $GITHUB_REF
+          echo REF3: ${GITHUB_REF##*/}
 
       - name: Create release
         id: create_release
