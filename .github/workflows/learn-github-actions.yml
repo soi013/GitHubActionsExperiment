@@ -17,6 +17,18 @@ jobs:
           echo REF1_$GITHUB_REF
           echo REF3_${GITHUB_REF##*/}
 
-# echo REF2_${ GITHUB_REF }
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        with:
+          tag_name: ${GITHUB_REF##*/}
+          release_name: Version ${GITHUB_REF##*/}
+          body: |
+            - hogehoge
+            - homuhomu
+          draft: true
+          prerelease: false
 
 
