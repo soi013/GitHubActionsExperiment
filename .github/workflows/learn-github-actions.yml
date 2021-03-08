@@ -26,16 +26,16 @@ jobs:
       - name: Save output
         shell: bash
         run: |
-          expr 1 + 1 > output_${GITHUB_REF##*/}_.log
+          expr 1 + 1 > output_$VERSION_.log
       
       - uses: actions/upload-artifact@v1
         with:
-          name: output_${GITHUB_REF##*/}_-log-file
-          path: output_${GITHUB_REF##*/}_.log
+          name: output_$VERSION_-log-file
+          path: output_$VERSION_.log
       
       - uses: actions/download-artifact@v2
         with:
-          name: output_${GITHUB_REF##*/}_-log-file
+          name: output_$VERSION_-log-file
 
       - name: Create release
         id: create_release
@@ -43,8 +43,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
         with:
-          tag_name: ${GITHUB_REF##*/}
-          release_name: Version ${GITHUB_REF##*/}
+          tag_name: $VERSION
+          release_name: Version $VERSION
           body: |
             - hogehoge
             - homuhomu
