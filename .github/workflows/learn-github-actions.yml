@@ -22,6 +22,12 @@ jobs:
           echo REPOSITORY=$REPOSITORY
           echo VERSION=$VERSION
 
+      - name: echos2
+        shell: bash
+        run: |
+          echo $RELEASE_VERSION
+          echo REPOSITORY=$REPOSITORY
+          echo VERSION=$VERSION
 
       - name: Save output
         shell: bash
