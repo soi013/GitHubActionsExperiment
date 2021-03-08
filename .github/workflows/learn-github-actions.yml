@@ -8,14 +8,29 @@ jobs:
         shell: pwsh
         run: |
           echo $RELEASE_VERSION
-          echo repo= ${{ github.repository }}
-          echo ref = ${{ github.ref }}
-          echo href= ${{ github.head_ref }}
-          echo sha = ${{ github.sha }}
-          echo workspace= ${{ github.workspace }}
-          echo tag = ${GITHUB_REF#refs/*/}
-          echo REF1= $GITHUB_REF
-          echo REF3= ${GITHUB_REF##*/}
+          echo repo=${{ github.repository }}
+          echo ref_=${{ github.ref }}
+          echo href=${{ github.head_ref }}
+          echo sha_=${{ github.sha }}
+          echo workspace=${{ github.workspace }}
+          echo tag_=${GITHUB_REF#refs/*/}
+          echo REF1=$GITHUB_REF
+          echo REF3=${GITHUB_REF##*/}
+          echo REF4=${GITHUB_REF/refs\/tags\/v/}
+
+      - name: Save output
+        shell: bash
+        run: |
+          expr 1 + 1 > output_${GITHUB_REF##*/}_.log
+      
+      - uses: actions/upload-artifact@v1
+        with:
+          name: output_${GITHUB_REF##*/}_-log-file
+          path: output_${GITHUB_REF##*/}_.log
+      
+      - uses: actions/download-artifact@v2
+        with:
+          name: output_${GITHUB_REF##*/}_-log-file
 
       - name: Create release
         id: create_release
