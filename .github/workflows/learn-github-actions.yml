@@ -8,6 +8,7 @@ jobs:
         shell: bash
         run: |
           echo Print_Repository_and_Version
+          echo repo_full=${{ github.repository }}
           echo "repo=${{ github.event.repository.name }}" >> $GITHUB_ENV
           echo "version=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
           echo REPOSITORY=${{ env.repo }}"
