@@ -19,9 +19,9 @@ jobs:
           echo REF3=${GITHUB_REF##*/}
           echo REF4=${GITHUB_REF/refs\/tags\/v/}
           echo "repo=${{ github.event.repository.name }}" >> $GITHUB_ENV
-          echo "version=${GITHUB_REF##*/}" >> $GITHUB_ENV
-          echo REPOSITORY=$repo
-          echo VERSION=$VER
+          echo "version=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
+          echo REPOSITORY=${{ env.repo }}"
+          echo VERSION=${{ env.version }}"
 
       - name: echos2
         shell: bash
@@ -34,12 +34,12 @@ jobs:
         shell: bash
         run: |
           expr 1 + 1 > output_${{ env.version }}.log
-      
+
       - uses: actions/upload-artifact@v1
         with:
           name: output_${{ env.version }}-log-file
           path: output_${{ env.version }}.log
-      
+
       - uses: actions/download-artifact@v2
         with:
           name: output_${{ env.version }}-log-file
@@ -58,4 +58,12 @@ jobs:
           draft: true
           prerelease: false
 
-
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: output_${{ env.version }}.log
+          asset_name: output_${{ env.version }}-log-file
+          asset_content_type: application/zip
