@@ -4,7 +4,7 @@ jobs:
   echos:
     runs-on: windows-latest
     steps:
-      - name: echo output
+      - name: echo_output
         shell: bash
         run: |
           echo $RELEASE_VERSION
