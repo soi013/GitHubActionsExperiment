@@ -4,6 +4,15 @@ jobs:
   echos:
     runs-on: windows-latest
     steps:
+      - name: echo output
+        shell: bash
+        run: |
+          echo Print_Repository_and_Version
+          echo "repo=${{ github.event.repository.name }}" >> $GITHUB_ENV
+          echo "version=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
+          echo REPOSITORY=${{ env.repo }}"
+          echo VERSION=${{ env.version }}"
+
       - name: echos
         shell: bash
         run: |
