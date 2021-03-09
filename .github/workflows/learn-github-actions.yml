@@ -7,10 +7,17 @@ jobs:
       - name: echo output
         shell: bash
         run: |
-          echo Print_Repository_and_Version
           echo $RELEASE_VERSION
-          echo repo_full=${{ github.repository }}
-          echo GITHUB_REF=$GITHUB_REF
+          echo repo1=${{ github.repository }}
+          echo repo2=${{ github.event.repository.name }}
+          echo ref_=${{ github.ref }}
+          echo href=${{ github.head_ref }}
+          echo sha_=${{ github.sha }}
+          echo workspace=${{ github.workspace }}
+          echo tag_=${GITHUB_REF#refs/*/}
+          echo REF1=$GITHUB_REF
+          echo REF3=${GITHUB_REF##*/}
+          echo REF4=${GITHUB_REF/refs\/tags\/v/}
           echo "repo=${{ github.event.repository.name }}" >> $GITHUB_ENV
           echo "version=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
           echo REPOSITORY=${{ env.repo }}"
