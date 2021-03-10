@@ -3,6 +3,7 @@ on: [push]
 jobs:
   echos:
     runs-on: windows-latest
+    if: "contains( github.ref, 'v*')"
     steps:
       - name: echos
         shell: bash
