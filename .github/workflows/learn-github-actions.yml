@@ -55,7 +55,7 @@ jobs:
         shell: bash
         run: |
           echo "write repo and version to env"
-          echo "tag=${{GITHUB_REF#refs/*/}}" >> $GITHUB_ENV
+          # echo "tag=${{GITHUB_REF#refs/*/}}" >> $GITHUB_ENV
           echo "repo=${{ github.event.repository.name }}" >> $GITHUB_ENV
           echo "version=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
 
