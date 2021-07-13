@@ -23,8 +23,8 @@ jobs:
           echo version=${GITHUB_REF/refs\/tags\/v/}
           echo "repo=${{ github.event.repository.name }}" >> $GITHUB_ENV
           echo "version=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
-          echo REPOSITORY=${{ env.repo }}"
-          echo VERSION=${{ env.version }}"
+          echo "REPOSITORY=${{ env.repo }}"
+          echo "VERSION=${{ env.version }}"
 
       - name: echos2
         shell: bash
@@ -48,7 +48,15 @@ jobs:
       runs-on: windows-latest
       needs: echos_everytime
       if: "contains( github.ref , 'v')"
-      steps:
+      steps:      
+      - name: echos
+        shell: bash
+        run: |
+          echo "repo=${{ github.event.repository.name }}" >> $GITHUB_ENV
+          echo "version=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
+          echo "REPOSITORY=${{ env.repo }}"
+          echo "VERSION=${{ env.version }}"
+
       - uses: actions/download-artifact@v2
         with:
           name: output_${{ env.version }}-log-file
