@@ -11,6 +11,7 @@ jobs:
       - name: echos
         shell: bash
         run: |
+          echo "Start Actions"
           echo $RELEASE_VERSION
           echo repo1=${{ github.repository }}
           echo repo2=${{ github.event.repository.name }}
