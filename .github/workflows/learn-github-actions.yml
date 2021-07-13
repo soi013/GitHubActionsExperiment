@@ -21,7 +21,7 @@ jobs:
           echo REF3=${GITHUB_REF##*/}
           echo REF4=${GITHUB_REF/refs\/tags\/v/}
           echo version=${GITHUB_REF/refs\/tags\/v/}
-          echo "tag=${{GITHUB_REF/refs\/*/}}" >> $GITHUB_ENV
+          # echo "tag=${{GITHUB_REF/refs\/*/}}" >> $GITHUB_ENV
           echo "repo=${{ github.event.repository.name }}" >> $GITHUB_ENV
           echo "version=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
           echo "env.repo(notyet)=${{ env.repo }}"
