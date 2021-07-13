@@ -21,11 +21,12 @@ jobs:
           echo REF3=${GITHUB_REF##*/}
           echo REF4=${GITHUB_REF/refs\/tags\/v/}
           echo version=${GITHUB_REF/refs\/tags\/v/}
+          echo "vtag=${GITHUB_REF/refs/*/}" >> $GITHUB_ENV
           echo "repo=${{ github.event.repository.name }}" >> $GITHUB_ENV
           echo "version=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
           echo "env.repo(notyet)=${{ env.repo }}"
           echo "env.version(notyet)=${{ env.version }}"
-          echo "env.tag(notyet)=${{ env.tag }}"
+          echo "env.vtag(notyet)=${{ env.vtag }}"
 
       - name: echos2
         shell: bash
@@ -33,17 +34,17 @@ jobs:
           echo "Start Actions2"
           echo "env.repo=${{ env.repo }}"
           echo "env.version=${{ env.version }}"
-          echo "env.tag=${{ env.tag }}"
+          echo "env.vtag=${{ env.vtag }}"
 
       - name: Save output
         shell: bash
         run: |
-          expr 1 + 1 > output_${{ env.tag }}.log
+          expr 1 + 1 > output_${{ env.vtag }}.log
 
       - uses: actions/upload-artifact@v1
         with:
-          name: output_${{ env.tag }}-log-file
-          path: output_${{ env.tag }}.log
+          name: output_${{ env.vtag }}-log-file
+          path: output_${{ env.vtag }}.log
 
   second_release:
     runs-on: windows-latest
@@ -54,12 +55,13 @@ jobs:
         shell: bash
         run: |
           echo "write repo and version to env"
+          echo "vtag=${GITHUB_REF/refs/*/}" >> $GITHUB_ENV
           echo "repo=${{ github.event.repository.name }}" >> $GITHUB_ENV
           echo "version=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
 
       - uses: actions/download-artifact@v2
         with:
-          name: output_${{ env.tag }}-log-file
+          name: output_${{ env.vtag }}-log-file
 
       - name: Create release
         id: create_release
@@ -81,6 +83,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: output_${{ env.tag }}.log
-          asset_name: output_${{ env.tag }}-log-file
+          asset_path: output_${{ env.vtag }}.log
+          asset_name: output_${{ env.vtag }}-log-file
           asset_content_type: application/zip
