@@ -34,11 +34,11 @@ jobs:
           echo "REPOSITORY=${{ env.repo }}"
           echo "VERSION=${{ env.version }}"
 
-  second_release:
-    runs-on: windows-latest
-    needs: echos_everytime
-    if: "contains( github.ref , 'v')"
-    steps:
+      # second_release:
+      #   runs-on: windows-latest
+      #   needs: echos_everytime
+      #   if: "contains( github.ref , 'v')"
+      #   steps:
       - name: Save output
         shell: bash
         run: |
