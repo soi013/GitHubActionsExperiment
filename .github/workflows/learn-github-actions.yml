@@ -23,16 +23,15 @@ jobs:
           echo version=${GITHUB_REF/refs\/tags\/v/}
           echo "repo=${{ github.event.repository.name }}" >> $GITHUB_ENV
           echo "version=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
-          echo "REPOSITORY=${{ env.repo }}"
-          echo "VERSION=${{ env.version }}"
+          echo "env.repo(notyet)=${{ env.repo }}"
+          echo "env.version(notyet)=${{ env.version }}"
 
       - name: echos2
         shell: bash
         run: |
           echo "Start Actions2"
-          echo $RELEASE_VERSION
-          echo "REPOSITORY=${{ env.repo }}"
-          echo "VERSION=${{ env.version }}"
+          echo "env.repo=${{ env.repo }}"
+          echo "env.version=${{ env.version }}"
 
       - name: Save output
         shell: bash
@@ -52,10 +51,9 @@ jobs:
       - name: echos
         shell: bash
         run: |
+          echo "write repo and version to env"
           echo "repo=${{ github.event.repository.name }}" >> $GITHUB_ENV
           echo "version=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
-          echo "REPOSITORY=${{ env.repo }}"
-          echo "VERSION=${{ env.version }}"
 
       - uses: actions/download-artifact@v2
         with:
