@@ -3,7 +3,7 @@ on:
  push:
 
 jobs:
-  echos:
+  echos_everytime:
     runs-on: windows-latest
     steps:
       - name: echos

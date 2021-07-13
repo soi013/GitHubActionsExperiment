@@ -7,6 +7,7 @@ on:
 jobs:
   echos:
     runs-on: windows-latest
+    needs: echos_everytime
     steps:
       - name: echos
         shell: bash
