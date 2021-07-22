@@ -95,9 +95,8 @@ jobs:
 
       - name: Upload Release Asset
         uses: csexton/release-asset-action@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           release-url: ${{ steps.create_release.outputs.upload_url }}
           file: |
             output_${{ env.vtag }}.log
