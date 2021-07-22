@@ -8,14 +8,19 @@ jobs:
   echos_everytime:
     runs-on: windows-latest
     steps:
+      - name: Dump Github Context
+        env:
+          GitHub_Context: ${{ toJson(github) }}
+        run: echo "${GitHub_Context}"
+
       - name: echos
         shell: bash
         run: |
           echo "Start Actions1"
           echo "env.appname=${{ env.appname }}"
           echo $RELEASE_VERSION
-          echo repo=${{ github.repository }}
-          echo repo2=${{ github.event.repository.name }}
+          echo repo_full=${{ github.repository }}
+          echo repo=${{ github.event.repository.name }}
           echo ref_=${{ github.ref }}
           echo href=${{ github.head_ref }}
           echo sha_=${{ github.sha }}
@@ -24,6 +29,7 @@ jobs:
           echo REF1=$GITHUB_REF
           echo REF3=${GITHUB_REF##*/}
           echo REF4=${GITHUB_REF/refs\/tags\/v/}
+          echo version=${GITHUB_REF/refs\/tags\/v/}
           echo version=${GITHUB_REF/refs\/tags\/v/}
           echo "vtag=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
           echo "repo=${{ github.event.repository.name }}" >> $GITHUB_ENV
