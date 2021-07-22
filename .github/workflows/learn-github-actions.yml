@@ -89,7 +89,7 @@ jobs:
           prerelease: false
 
       - name: Upload Release Asset
-        uses: csexton/release-asset-actions@v2
+        uses: csexton/release-asset-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
