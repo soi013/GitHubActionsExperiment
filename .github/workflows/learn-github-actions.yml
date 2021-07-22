@@ -100,6 +100,6 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           release-url: ${{ steps.create_release.outputs.upload_url }}
-          file: |
+          files: |
             output_${{ env.vtag }}.log
             output_${{ env.vtag }}_log.zip
