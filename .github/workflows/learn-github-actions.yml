@@ -74,6 +74,11 @@ jobs:
         with:
           name: output_${{ env.vtag }}-log-file
 
+      - name: Archive packages
+        shell: pwsh
+        run: |
+          Compress-Archive -Path output_${{ env.vtag }}.log -DestinationPath output_${{ env.vtag }}_log.zip
+
       - name: Create release
         id: create_release
         uses: actions/create-release@v1
@@ -94,5 +99,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           release-url: ${{ steps.create_release.outputs.upload_url }}
-          file: output_${{ env.vtag }}.log
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          file: |
+            output_${{ env.vtag }}.log
+            output_${{ env.vtag }}_log.zip
