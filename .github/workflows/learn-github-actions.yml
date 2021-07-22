@@ -93,7 +93,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          release_url: ${{ steps.create_release.outputs.upload_url }}
+          release-url: ${{ steps.create_release.outputs.upload_url }}
           file: output_${{ env.vtag }}.log
           asset_content_type: application/zip
           github-token: ${{ secrets.GITHUB_TOKEN }}
