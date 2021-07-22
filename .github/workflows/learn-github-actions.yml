@@ -95,5 +95,4 @@ jobs:
         with:
           release-url: ${{ steps.create_release.outputs.upload_url }}
           file: output_${{ env.vtag }}.log
-          asset_content_type: application/zip
           github-token: ${{ secrets.GITHUB_TOKEN }}
