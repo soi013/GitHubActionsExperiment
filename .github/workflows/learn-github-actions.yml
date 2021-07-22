@@ -89,11 +89,11 @@ jobs:
           prerelease: false
 
       - name: Upload Release Asset
-        uses: actions/upload-release-asset@v1
+        uses: csexton/release-asset-actions@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: output_${{ env.vtag }}.log
-          asset_name: output_${{ env.vtag }}-log-file
+          release_url: ${{ steps.create_release.outputs.upload_url }}
+          file: output_${{ env.vtag }}.log
           asset_content_type: application/zip
+          github-token: ${{ secrets.GITHUB_TOKEN }}
